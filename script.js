@@ -186,6 +186,30 @@ function ballMovement() {
 
 }
 
+function keyDownHandler(e) 
+			{
+			    if(e.key == "Right" || e.key == "ArrowRight") 
+				    {
+				        rightPad = true;
+				    }
+			    else if(e.key == "Left" || e.key == "ArrowLeft") 
+				    {
+				        leftPad = true;
+				    }
+			}
+
+		function keyUpHandler(e) 
+			{
+			    if(e.key == "Right" || e.key == "ArrowRight") 
+				    {
+				        rightPad = false;
+				    }
+			    else if(e.key == "Left" || e.key == "ArrowLeft") 
+				    {
+				        leftPad = false;
+				    }
+			}
+
 
 function ballBrickCollision(){
 
@@ -344,6 +368,17 @@ function drawAll (){
   drawBrick();
   drawScore();
   drawStick();
+
+  if(rightPad && paddleX < canvas.width-paddleW) 
+					{
+        				paddleX += 4;
+    				}
+			    else if(leftPad && paddleX > 0) 
+				    {
+				        paddleX -= 4;
+				    }
+
+	
 }
 
 
@@ -373,6 +408,8 @@ function mouseMoveHandler(e){
  
 }
 
+document.addEventListener("keydown", keyDownHandler, false);
+document.addEventListener("keyup", keyUpHandler, false);
 document.addEventListener("mousemove", mouseMoveHandler, false);
 
 
